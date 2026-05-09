@@ -1,0 +1,217 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --card: 0 0% 99%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 160 84% 35%;
+  --primary-foreground: 160 84% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 160 84% 35%;
+  --radius: 0.75rem;
+}
+
+.dark {
+  --background: 240 10% 2%;
+  --foreground: 0 0% 100%;
+  --card: 240 10% 4%;
+  --card-foreground: 0 0% 100%;
+  --popover: 240 10% 4%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 160 84% 35%;
+  --primary-foreground: 160 84% 5%;
+  --secondary: 240 4% 12%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 4% 10%;
+  --muted-foreground: 240 4% 70%;
+  --accent: 240 4% 12%;
+  --accent-foreground: 0 0% 100%;
+  --border: 240 4% 15%;
+  --input: 240 4% 15%;
+}
+
+
+
+.sepia {
+  --background: 36 33% 89%;
+  --foreground: 25 35% 15%;
+  --card: 36 33% 85%;
+  --card-foreground: 25 35% 15%;
+  --popover: 36 33% 85%;
+  --popover-foreground: 25 35% 15%;
+  --primary: 25 75% 35%;
+  --primary-foreground: 36 33% 95%;
+  --secondary: 36 20% 80%;
+  --secondary-foreground: 25 35% 15%;
+  --muted: 36 20% 80%;
+  --muted-foreground: 25 20% 40%;
+  --accent: 25 75% 35%;
+  --accent-foreground: 36 33% 95%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 36 20% 75%;
+  --input: 36 20% 75%;
+  --ring: 25 75% 35%;
+}
+
+.green {
+  --background: 160 30% 6%;
+  --foreground: 160 10% 95%;
+  --card: 160 30% 8%;
+  --card-foreground: 160 10% 95%;
+  --popover: 160 30% 8%;
+  --popover-foreground: 160 10% 95%;
+  --primary: 142.1 70.6% 45.3%;
+  --primary-foreground: 160 30% 5%;
+  --secondary: 160 20% 15%;
+  --secondary-foreground: 160 10% 95%;
+  --muted: 160 20% 15%;
+  --muted-foreground: 160 10% 60%;
+  --accent: 142.1 70.6% 45.3%;
+  --accent-foreground: 160 30% 5%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 160 20% 20%;
+  --input: 160 20% 20%;
+  --ring: 142.1 70.6% 45.3%;
+}
+
+.blue {
+  --background: 220 40% 6%;
+  --foreground: 220 10% 95%;
+  --card: 220 40% 8%;
+  --card-foreground: 220 10% 95%;
+  --popover: 220 40% 8%;
+  --popover-foreground: 220 10% 95%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 220 40% 5%;
+  --secondary: 220 20% 15%;
+  --secondary-foreground: 220 10% 95%;
+  --muted: 220 20% 15%;
+  --muted-foreground: 220 10% 60%;
+  --accent: 217 91% 60%;
+  --accent-foreground: 220 40% 5%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 220 20% 20%;
+  --input: 220 20% 20%;
+  --ring: 217 91% 60%;
+}
+
+@theme inline {
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui;
+  --font-serif: var(--font-lora), ui-serif, Georgia, serif;
+  --font-display: var(--font-jakarta), ui-sans-serif, system-ui;
+  --font-arabic: 'KFGQ', 'Amiri', 'Scheherazade', serif;
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+}
+
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground antialiased selection:bg-primary/30;
+    font-feature-settings: "cv11", "ss01";
+  }
+}
+
+@layer components {
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 5px;
+  }
+  .custom-scrollbar::-webkit-scrollbar-track {
+    @apply bg-transparent;
+  }
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-primary/20 rounded-full hover:bg-primary/40 transition-colors;
+  }
+}
+
+/* Arabic font support */
+@font-face {
+  font-family: 'KFGQ';
+  src: url('https://cdn.jsdelivr.net/gh/quran/quran-fonts/fonts/kfgq/KFGQ.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Amiri';
+  src: url('https://cdn.jsdelivr.net/gh/aliftype/amiri/fonts/Amiri-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Scheherazade';
+  src: url('https://cdn.jsdelivr.net/gh/google/fonts/file/aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9mb250cy9yYXcvbWFzdGVyL29mbC9zY2hlbmhlcmF6YWRlL1NjaGVoZXJhemFkZS1SZWd1bGFyLnR0Zg==') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.font-arabic {
+  font-family: 'KFGQ', 'Amiri', 'Scheherazade', serif;
+}
+
+/* Smooth transitions */
+.transition-all {
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
