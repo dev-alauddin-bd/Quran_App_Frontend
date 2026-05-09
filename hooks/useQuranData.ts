@@ -27,7 +27,7 @@ export interface Translation {
   text: string
 }
 
-const BACKEND_API = 'http://localhost:3001/api'
+const BACKEND_API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'
 
 export function useQuranData() {
   const [surahs, setSurahs] = useState<Surah[]>([])

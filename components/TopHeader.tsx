@@ -1,7 +1,7 @@
 'use client'
 
 import { Search, Menu, Home, BookOpen, Clock, Heart, Settings, Bell, Sun, Moon, Palette } from 'lucide-react'
-import { useTheme } from '@/components/theme-provider'
+import { useTheme } from 'next-themes'
 
 interface TopHeaderProps {
   onSearchClick: () => void
@@ -27,14 +27,14 @@ export function TopHeader({
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between gap-4">
         {/* Left: Branding & Mobile Menu */}
         <div className="flex items-center gap-4">
-          <button 
+          <button
             onClick={onMenuClick}
             className="p-2 md:hidden text-foreground/60 hover:text-primary hover:bg-primary/5 rounded-xl transition-all"
           >
             <Menu size={22} />
           </button>
-          
-          <div 
+
+          <div
             onClick={onHomeClick}
             className="flex items-center gap-3 cursor-pointer group"
           >
@@ -51,22 +51,20 @@ export function TopHeader({
         <nav className="hidden md:flex items-center gap-1 bg-muted/50 p-1 rounded-2xl border border-border/50">
           <button
             onClick={onHomeClick}
-            className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2 ${
-              currentView === 'home' 
-                ? 'bg-background text-primary shadow-sm' 
+            className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2 ${currentView === 'home'
+                ? 'bg-background text-primary shadow-sm'
                 : 'text-foreground/40 hover:text-foreground'
-            }`}
+              }`}
           >
             <Home size={14} />
             Home
           </button>
           <button
             onClick={onQuranClick}
-            className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2 ${
-              currentView === 'reader' 
-                ? 'bg-background text-primary shadow-sm' 
+            className={`px-6 py-2 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all flex items-center gap-2 ${currentView === 'reader'
+                ? 'bg-background text-primary shadow-sm'
                 : 'text-foreground/40 hover:text-foreground'
-            }`}
+              }`}
           >
             <BookOpen size={14} />
             Read Quran
@@ -101,7 +99,7 @@ export function TopHeader({
           </button>
 
           <div className="hidden sm:flex items-center gap-2">
-            <button 
+            <button
               onClick={onSettingsClick}
               className="p-2.5 rounded-xl text-foreground/40 hover:text-primary hover:bg-primary/5 transition-all"
             >
