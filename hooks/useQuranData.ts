@@ -27,7 +27,7 @@ export interface Translation {
   text: string
 }
 
-const BACKEND_API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api'
+const BACKEND_API = process.env.NEXT_PUBLIC_API_URL;
 
 export function useQuranData() {
   const [surahs, setSurahs] = useState<Surah[]>([])
@@ -41,7 +41,7 @@ export function useQuranData() {
         const response = await fetch(`${BACKEND_API}/surahs`)
         if (!response.ok) throw new Error('Failed to fetch surahs')
         const data = await response.json()
-        
+
         // Map backend format to frontend format if needed
         const mappedSurahs = data.map((s: any) => ({
           number: s.number,
@@ -51,7 +51,7 @@ export function useQuranData() {
           numberOfAyahs: s.total_verses,
           revelationType: s.type === 'meccan' ? 'Meccan' : 'Medinan'
         }))
-        
+
         setSurahs(mappedSurahs)
         setError(null)
       } catch (err) {
@@ -84,7 +84,7 @@ export function useSurahAyahs(surahNumber: number) {
         const response = await fetch(`${BACKEND_API}/surah/${surahNumber}`)
         if (!response.ok) throw new Error('Failed to fetch surah content')
         const data = await response.json()
-        
+
         setSurahInfo({
           name: data.name,
           transliteration: data.transliteration,
@@ -98,7 +98,7 @@ export function useSurahAyahs(surahNumber: number) {
           text: v.text,
           numberInSurah: v.id
         }))
-        
+
         setAyahs(mappedAyahs)
 
         const translationMap: { [key: number]: string } = {}
@@ -106,7 +106,7 @@ export function useSurahAyahs(surahNumber: number) {
           translationMap[v.id] = v.translation
         })
         setTranslationTexts(translationMap)
-        
+
         setError(null)
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to load ayahs')
