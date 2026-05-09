@@ -48,64 +48,72 @@ export function LandingPage({ surahs, onSurahSelect }: LandingPageProps) {
   return (
     <SmoothScroll root={true}>
       <div className="flex-1 min-h-screen bg-background custom-scrollbar">
-        {/* Premium Hero Section */}
-        <div className="relative pt-32 pb-24 px-6 md:px-12 text-center overflow-hidden">
-          {/* Abstract Background Effects */}
-          <div className="absolute inset-0 z-0">
-            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 blur-[120px] rounded-full opacity-50 animate-pulse-slow" />
-            <div className="absolute top-20 right-0 w-[400px] h-[400px] bg-blue-500/10 blur-[100px] rounded-full" />
-            <div className="absolute top-20 left-0 w-[400px] h-[400px] bg-purple-500/10 blur-[100px] rounded-full" />
-            {/* Subtle Grid Pattern */}
-            <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.03] bg-repeat" />
-          </div>
+        {/* Elegant Clean Hero Section */}
+        <div className="relative pt-32 pb-24 px-6 md:px-12 text-center overflow-hidden border-b border-border/50 bg-background">
+          {/* Subtle Traditional Pattern Overlay */}
+          <div className="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-[0.02] bg-repeat pointer-events-none" />
 
-          <div className="relative z-10 max-w-4xl mx-auto space-y-10">
+          <div className="relative z-10 max-w-4xl mx-auto space-y-12">
             {/* Main Headline */}
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary border border-primary/20 text-xs font-bold uppercase tracking-widest backdrop-blur-md">
-                <BookOpen size={14} />
-                <span>Version 2.0 Now Live</span>
+            <div className="space-y-6">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-muted text-foreground/60 border border-border text-[10px] font-bold uppercase tracking-widest">
+                <BookOpen size={14} className="text-primary" />
+                <span>Quran Mazid V2.0</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-display font-black text-foreground tracking-tight leading-[1.1]">
                 Read, Study, and <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-400">
+                <span className="text-primary">
                   Understand the Quran
                 </span>
               </h1>
-              <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-medium leading-relaxed">
+              <p className="text-foreground/60 text-lg max-w-2xl mx-auto font-medium leading-relaxed font-serif">
                 Experience a beautiful, distraction-free reading environment tailored for deep focus and spiritual connection.
               </p>
+              
+              {/* Primary Call to Action */}
+              <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+                <button 
+                  onClick={() => onSurahSelect(1)}
+                  className="flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-2xl text-sm font-bold shadow-xl shadow-primary/20 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/30 transition-all uppercase tracking-widest"
+                >
+                  <BookOpen size={18} />
+                  Start Reading
+                </button>
+              </div>
             </div>
             
-            {/* Premium Search Bar */}
-            <div className="relative group max-w-2xl mx-auto">
-              <div className="absolute inset-0 bg-primary/20 rounded-3xl blur-xl group-hover:blur-2xl transition-all duration-500 opacity-50" />
-              <div className="relative flex items-center bg-card/80 backdrop-blur-xl border border-white/10 dark:border-white/5 rounded-3xl p-3 shadow-2xl transition-all focus-within:border-primary/50 focus-within:bg-card/95">
-                <div className="w-12 h-12 flex items-center justify-center rounded-2xl bg-muted/50 text-foreground/40">
-                  <Search size={20} />
+            {/* Clean Search Bar */}
+            <div className="relative max-w-2xl mx-auto">
+              <div className="relative flex items-center bg-card border border-border rounded-2xl p-2 shadow-sm transition-all focus-within:border-primary/50 focus-within:ring-4 focus-within:ring-primary/10">
+                <div className="w-12 h-12 flex items-center justify-center text-foreground/40">
+                  <Search size={22} />
                 </div>
                 <input 
                   type="text" 
                   placeholder="Search Surah, Juz or Ayah..."
-                  className="flex-1 bg-transparent border-none focus:ring-0 px-4 py-4 text-lg font-medium text-foreground placeholder:text-foreground/40"
+                  className="flex-1 bg-transparent border-none focus:ring-0 px-2 py-4 text-lg font-medium text-foreground placeholder:text-foreground/30"
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                 />
-                <button className="hidden md:flex items-center gap-2 px-6 py-4 bg-primary text-primary-foreground rounded-2xl text-sm font-bold shadow-lg shadow-primary/20 hover:scale-[1.02] transition-all">
+                <button className="hidden md:flex items-center gap-2 px-8 py-3 bg-foreground text-background rounded-xl text-sm font-bold shadow-sm hover:bg-foreground/90 transition-all">
                   Search
                 </button>
               </div>
             </div>
 
             {/* Quick Links */}
-            <div className="pt-4 space-y-4">
-              <div className="text-[10px] font-black text-foreground/40 uppercase tracking-[0.2em]">Popular Surahs</div>
+            <div className="pt-2 space-y-5">
+              <div className="text-[10px] font-black text-foreground/40 uppercase tracking-[0.2em] flex items-center justify-center gap-4">
+                <div className="h-px w-8 bg-border" />
+                Popular Surahs
+                <div className="h-px w-8 bg-border" />
+              </div>
               <div className="flex flex-wrap justify-center gap-3">
                 {quickLinks.map(link => (
                   <button 
                     key={link.id}
                     onClick={() => onSurahSelect(link.id)}
-                    className="px-6 py-3 rounded-2xl bg-card/50 backdrop-blur-md border border-border hover:border-primary hover:text-primary transition-all text-xs font-bold shadow-sm"
+                    className="px-6 py-2.5 rounded-full bg-background border border-border hover:border-primary hover:text-primary transition-all text-xs font-bold shadow-sm uppercase tracking-widest text-foreground/80"
                   >
                     {link.name}
                   </button>
