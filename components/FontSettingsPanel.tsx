@@ -1,8 +1,9 @@
 "use client"
 import { Settings, Palette } from 'lucide-react'
 import { FontSettings, ArabicFont } from '@/hooks/useFontSettings'
-import { useTheme } from '@/components/theme-provider'
+
 import { useEffect, useState } from 'react'
+import { useTheme } from '@/components/theme-provider'
 
 interface FontSettingsPanelProps {
   settings: FontSettings
@@ -24,7 +25,7 @@ const fonts: { value: ArabicFont; label: string }[] = [
 const themes = [
   { value: 'light', label: 'Light', color: 'bg-white border-gray-200' },
   { value: 'dark', label: 'Dark', color: 'bg-[#0f0f0f] border-gray-800' },
-]
+] as const
 
 export function FontSettingsPanel({
   settings,
@@ -103,16 +104,14 @@ export function FontSettingsPanel({
                   <button
                     key={t.value}
                     onClick={() => setTheme(t.value)}
-                    className={`group flex items-center gap-3 p-3 rounded-xl border transition-all ${
-                      theme === t.value 
-                        ? 'bg-primary/5 border-primary ring-1 ring-primary/20' 
+                    className={`group flex items-center gap-3 p-3 rounded-xl border transition-all ${theme === t.value
+                        ? 'bg-primary/5 border-primary ring-1 ring-primary/20'
                         : 'bg-card border-border hover:border-primary/30 hover:bg-muted/30'
-                    }`}
+                      }`}
                   >
                     <div className={`w-6 h-6 rounded-full border border-border shadow-inner ${t.color}`} />
-                    <span className={`text-[10px] font-bold uppercase tracking-wider ${
-                      theme === t.value ? 'text-primary' : 'text-foreground/60'
-                    }`}>
+                    <span className={`text-[10px] font-bold uppercase tracking-wider ${theme === t.value ? 'text-primary' : 'text-foreground/60'
+                      }`}>
                       {t.label}
                     </span>
                   </button>

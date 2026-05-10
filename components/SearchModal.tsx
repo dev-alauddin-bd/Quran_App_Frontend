@@ -23,7 +23,8 @@ export function SearchModal({ isOpen, onClose, onSurahSelect }: SearchModalProps
     const timer = setTimeout(async () => {
       setLoading(true)
       try {
-        const response = await fetch(`http://localhost:3001/api/search?q=${encodeURIComponent(searchQuery)}`)
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001'
+        const response = await fetch(`${apiUrl}/api/search?q=${encodeURIComponent(searchQuery)}`)
         if (response.ok) {
           const data = await response.json()
           setResults(data)

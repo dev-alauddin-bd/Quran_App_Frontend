@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Lora } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: '--font-jakarta' });
 const lora = Lora({ subsets: ["latin"], variable: '--font-lora' });
@@ -33,6 +31,9 @@ export const metadata: Metadata = {
 import { AppProvider } from './AppContext'
 import { GlobalUI } from '@/components/GlobalUI'
 import { SmoothScroll } from '@/components/SmoothScroll'
+import { QueryProvider } from '@/components/query-provider'
+
+import { ThemeProvider } from '@/components/theme-provider'
 
 export default function RootLayout({
   children,
@@ -41,22 +42,34 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  var supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+                  if (!theme && supportDarkMode) theme = 'dark';
+                  if (!theme) theme = 'light';
+                  if (theme === 'dark') document.documentElement.classList.add('dark');
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
+      </head>
       <body className={`${jakarta.variable} ${lora.variable} font-sans antialiased`} suppressHydrationWarning>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-          enableColorScheme={false}
-        >
+        <ThemeProvider>
           <SmoothScroll root={true}>
-            <AppProvider>
-              <GlobalUI>
-                {children}
-              </GlobalUI>
-            </AppProvider>
+            <QueryProvider>
+              <AppProvider>
+                <GlobalUI>
+                  {children}
+                </GlobalUI>
+              </AppProvider>
+            </QueryProvider>
           </SmoothScroll>
-          {process.env.NODE_ENV === 'production' && <Analytics />}
         </ThemeProvider>
       </body>
     </html>

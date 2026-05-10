@@ -1,13 +1,55 @@
 'use client'
 
-import { ThemeProvider as NextThemesProvider } from 'next-themes'
-import { useTheme as useNextTheme } from 'next-themes'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 
-export function ThemeProvider({ children, ...props }: any) {
-  return <NextThemesProvider {...props}>{children}</NextThemesProvider>
+type Theme = 'dark' | 'light'
+
+interface ThemeContextType {
+  theme: Theme
+  setTheme: (theme: Theme) => void
+  toggleTheme: () => void
 }
 
-export const useTheme = () => {
-  const { theme, setTheme, resolvedTheme } = useNextTheme()
-  return { theme, setTheme, resolvedTheme }
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setThemeState] = useState<Theme>('dark')
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('theme') as Theme | null
+    if (savedTheme) {
+      setThemeState(savedTheme)
+      document.documentElement.classList.toggle('dark', savedTheme === 'dark')
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      const initialTheme = prefersDark ? 'dark' : 'light'
+      setThemeState(initialTheme)
+      document.documentElement.classList.toggle('dark', initialTheme === 'dark')
+    }
+  }, [])
+
+  const setTheme = (newTheme: Theme) => {
+    setThemeState(newTheme)
+    localStorage.setItem('theme', newTheme)
+    document.documentElement.classList.toggle('dark', newTheme === 'dark')
+  }
+
+  const toggleTheme = () => {
+    const newTheme = theme === 'dark' ? 'light' : 'dark'
+    setTheme(newTheme)
+  }
+
+  return (
+    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  )
+}
+
+export function useTheme() {
+  const context = useContext(ThemeContext)
+  if (context === undefined) {
+    throw new Error('useTheme must be used within a ThemeProvider')
+  }
+  return context
 }
