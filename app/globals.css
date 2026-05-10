@@ -1,6 +1,8 @@
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
+/* BUMP: 2026-05-09 20:49 */
+
 @custom-variant dark (&:is(.dark *));
 
 :root {
@@ -44,8 +46,6 @@
   --border: 240 4% 15%;
   --input: 240 4% 15%;
 }
-
-
 
 .sepia {
   --background: 36 33% 89%;
@@ -181,10 +181,12 @@ html.lenis, html.lenis body {
   }
 }
 
-/* Arabic font support */
+/* Arabic font support - PERMANENT SOLUTION */
 @font-face {
   font-family: 'KFGQ';
-  src: url('https://cdn.jsdelivr.net/gh/quran/quran-fonts/fonts/kfgq/KFGQ.woff2') format('woff2');
+  /* Load locally first for maximum reliability, then fallback to verified CDN */
+  src: url('/fonts/KFGQ.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/thetruetruth/quran-data-kfgqpc@main/hafs/font/hafs.18.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -192,7 +194,7 @@ html.lenis, html.lenis body {
 
 @font-face {
   font-family: 'Amiri';
-  src: url('https://cdn.jsdelivr.net/gh/aliftype/amiri/fonts/Amiri-Regular.ttf') format('truetype');
+  src: url('https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/amiri/Amiri-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -200,7 +202,7 @@ html.lenis, html.lenis body {
 
 @font-face {
   font-family: 'Scheherazade';
-  src: url('https://cdn.jsdelivr.net/gh/google/fonts/file/aHR0cHM6Ly9naXRodWIuY29tL2dvb2dsZS9mb250cy9yYXcvbWFzdGVyL29mbC9zY2hlbmhlcmF6YWRlL1NjaGVoZXJhemFkZS1SZWd1bGFyLnR0Zg==') format('truetype');
+  src: url('https://cdn.jsdelivr.net/gh/google/fonts@main/ofl/scheherazade/Scheherazade-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;

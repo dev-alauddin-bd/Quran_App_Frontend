@@ -3,7 +3,7 @@ import { Settings, Palette } from 'lucide-react'
 import { FontSettings, ArabicFont } from '@/hooks/useFontSettings'
 
 import { useEffect, useState } from 'react'
-import { useTheme } from 'next-themes'
+import { useTheme } from '@/components/theme-provider'
 
 interface FontSettingsPanelProps {
   settings: FontSettings
@@ -25,7 +25,7 @@ const fonts: { value: ArabicFont; label: string }[] = [
 const themes = [
   { value: 'light', label: 'Light', color: 'bg-white border-gray-200' },
   { value: 'dark', label: 'Dark', color: 'bg-[#0f0f0f] border-gray-800' },
-]
+] as const
 
 export function FontSettingsPanel({
   settings,

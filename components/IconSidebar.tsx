@@ -1,7 +1,7 @@
 'use client'
 
 import { BookOpen, Home, Search, Settings, HelpCircle, Moon, Sun, Share2, Volume2, Bookmark, Menu } from 'lucide-react'
-import { useTheme } from 'next-themes'
+import { useTheme } from '@/components/theme-provider'
 import { useState } from 'react'
 
 interface IconSidebarProps {

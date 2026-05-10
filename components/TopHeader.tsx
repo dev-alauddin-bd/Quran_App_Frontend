@@ -1,7 +1,8 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Search, Menu, Home, BookOpen, Clock, Heart, Settings, Bell, Sun, Moon, Palette } from 'lucide-react'
-import { useTheme } from 'next-themes'
+import { useTheme } from '@/components/theme-provider'
 
 interface TopHeaderProps {
   onSearchClick: () => void
@@ -21,6 +22,30 @@ export function TopHeader({
   currentView
 }: TopHeaderProps) {
   const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return (
+      <header className="sticky top-0 z-[100] w-full bg-background/80 backdrop-blur-xl border-b border-border transition-all duration-300">
+        <div className="max-w-[1600px] mx-auto px-4 md:px-8 h-16 flex items-center justify-between gap-4">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-primary text-primary-foreground flex items-center justify-center font-black text-lg">QM</div>
+              <span className="hidden sm:block text-lg font-display font-black text-foreground tracking-tight">Quran Mazid</span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+             <div className="w-10 h-10 rounded-xl bg-muted/20" />
+             <div className="w-32 h-10 rounded-xl bg-muted/20" />
+          </div>
+        </div>
+      </header>
+    )
+  }
 
   return (
     <header className="sticky top-0 z-[100] w-full bg-background/80 backdrop-blur-xl border-b border-border transition-all duration-300">
