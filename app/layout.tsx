@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { Plus_Jakarta_Sans, Lora } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 
 const jakarta = Plus_Jakarta_Sans({ subsets: ["latin"], variable: '--font-jakarta' });
@@ -71,7 +70,6 @@ export default function RootLayout({
               </AppProvider>
             </QueryProvider>
           </SmoothScroll>
-          {process.env.NODE_ENV === 'production' && <Analytics />}
         </ThemeProvider>
       </body>
     </html>
